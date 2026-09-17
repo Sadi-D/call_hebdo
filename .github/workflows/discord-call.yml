@@ -17,7 +17,15 @@ jobs:
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         run: |
+          HOUR=$(date +%H)
+          
+          if [ "$HOUR" = "18" ]; then
+            MESSAGE='@everyone\n🔔 **CALL HEBDOMADAIRE**\nPetit rappel : le call est prévu **à 19h** 🎙️'
+          else
+            MESSAGE='@everyone\n🚨 **CALL DANS 10 MINUTES**\nRendez-vous à **19h** dans le vocal 🎙️'
+          fi
+
           curl -H "Content-Type: application/json" \
             -X POST \
-            -d '{"content":"@everyone\n🔔 **Call hebdomadaire**\nLe call commence à 19h ! Rendez-vous dans le vocal 👋"}'
+            -d "{\"content\":\"$MESSAGE\"}" \
             "$DISCORD_WEBHOOK"
