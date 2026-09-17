@@ -17,5 +17,5 @@ jobs:
         run: |
           curl -H "Content-Type: application/json" \
             -X POST \
-            -d '{"content":"🔔 **Call hebdomadaire**\nLe call commence à 19h ! Rendez-vous dans le vocal 👋"}' \
+            -d '{"content":"@everyone\n🔔 **Call hebdomadaire**\nLe call commence à 19h ! Rendez-vous dans le vocal 👋"}'
             "$DISCORD_WEBHOOK"
