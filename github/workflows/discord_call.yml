@@ -1,0 +1,21 @@
+name: Discord Weekly Call
+
+on:
+  schedule:
+    - cron: '00 17 * * 5'
+      timezone: 'Europe/Paris'
+  workflow_dispatch:
+
+jobs:
+  send-discord-message:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send Discord notification
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        run: |
+          curl -H "Content-Type: application/json" \
+            -X POST \
+            -d '{"content":"🔔 **Call hebdomadaire**\nLe call commence à 19h ! Rendez-vous dans le vocal 👋"}' \
+            "$DISCORD_WEBHOOK"
