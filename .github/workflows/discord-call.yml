@@ -2,7 +2,9 @@ name: Discord Weekly Call
 
 on:
   schedule:
-    - cron: '00 17 * * 5'
+    - cron: '00 18 * * 5'
+      timezone: 'Europe/Paris'
+    - cron: '50 18 * * 5'
       timezone: 'Europe/Paris'
   workflow_dispatch:
 
