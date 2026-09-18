@@ -2,10 +2,8 @@ name: Discord Weekly Call
 
 on:
   schedule:
-    - cron: '00 18 * * 5'
-      timezone: 'Europe/Paris'
-    - cron: '50 18 * * 5'
-      timezone: 'Europe/Paris'
+    - cron: '00 15 * * 5'
+    - cron: '50 15 * * 5'
   workflow_dispatch:
 
 jobs:
@@ -17,12 +15,12 @@ jobs:
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         run: |
-          HOUR=$(date +%H)
-          
-          if [ "$HOUR" = "18" ]; then
-            MESSAGE='@everyone\n🔔 **CALL HEBDOMADAIRE**\nPetit rappel : le call est prévu **à 19h** 🎙️'
+          MINUTE=$(date -u +%M)
+
+          if [ "$MINUTE" = "00" ]; then
+            MESSAGE='@everyone\n🔔 **CALL HEBDOMADAIRE**\nPetit rappel : le call est prévu **à 18h** 🎙️'
           else
-            MESSAGE='@everyone\n🚨 **CALL DANS 10 MINUTES**\nRendez-vous à **19h** dans le vocal 🎙️'
+            MESSAGE='@everyone\n🚨 **CALL DANS 10 MINUTES**\nRendez-vous à **18h** dans le vocal 🎙️'
           fi
 
           curl -H "Content-Type: application/json" \
